@@ -55,9 +55,7 @@ describe('Functions', () => {
         { data: 'wow'}
       ];
 
-      const lam = x => x !== undefined;
-
-      const presentResults: Array<TestData> = results.filter(x => x !== undefined);
+      const presentResults: Array<TestData> = results.filter(isDefined);
 
       expect(presentResults).toEqual([
         { data: 'hello' },

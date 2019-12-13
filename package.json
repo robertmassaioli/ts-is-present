@@ -5,5 +5,11 @@
   "main": "index.js",
   "author": "Robert Massaioli",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "build": "tsc --project ."
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
 }

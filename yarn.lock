@@ -346,6 +346,11 @@
   dependencies:
     jest-diff "^24.3.0"
 
+"@types/node@^12.12.17":
+  version "12.12.17"
+  resolved "https://registry.npmjs.org/@types/node/-/node-12.12.17.tgz#191b71e7f4c325ee0fb23bc4a996477d92b8c39b"
+  integrity sha512-Is+l3mcHvs47sKy+afn2O1rV4ldZFU7W8101cNlOd+MRbjM4Onida8jSZnJdTe/0Pcf25g9BNIUsuugmE6puHA==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"

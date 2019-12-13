@@ -47,6 +47,25 @@ describe('Functions', () => {
       expect(isDefined<TestData>(undefined)).toBeFalsy();
     });
 
+    it('does not typecheck', () => {
+      const results: Array<TestData | undefined> = [
+        { data: 'hello' },
+        { data: 'world' },
+        undefined,
+        { data: 'wow'}
+      ];
+
+      const lam = x => x !== undefined;
+
+      const presentResults: Array<TestData> = results.filter(x => x !== undefined);
+
+      expect(presentResults).toEqual([
+        { data: 'hello' },
+        { data: 'world' },
+        { data: 'wow'}
+      ])
+    });
+
     it('should filter out only present values from an array', () => {
       const results: Array<TestData | undefined> = [
         { data: 'hello' },

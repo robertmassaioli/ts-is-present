@@ -2,11 +2,23 @@
   "name": "ts-is-present",
   "version": "1.0.0",
   "description": "A library to have a generic typescript definition for object presence.",
+  "keywords": ["typescript", "filter", "undefined", "null"],
   "main": "lib/index",
   "typings": "lib/index",
-  "author": "Robert Massaioli",
+  "author": {
+    "name": "Robert Massaioli",
+    "url": "https://keybase.io/robertmassaioli"
+  },
   "license": "MIT",
   "private": false,
+  "homepage": "https://bitbucket.org/echo_rm/ts-is-present",
+  "repository": {
+    "type" : "git",
+    "url" : "git@bitbucket.org:echo_rm/ts-is-present.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/echo_rm/ts-is-present/issues?status=new&status=open"
+  },
   "scripts": {
     "build": "tsc --project .",
     "test": "jest",

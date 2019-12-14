@@ -43,7 +43,7 @@ If we look at those types carefully they differ in an interesting way.
 
 The second definition expects a callback function where the return type of that callback is `unknown`; 
 this will be treated as a truthy value when the filtering is performed. Most importantly, in this 
-function, if you give it an `Array<T>` then you will get back an `Array<S>`; even if the lambda 
+function, if you give it an `Array<T>` then you will get back an `Array<T>`; even if the lambda 
 that you provided "proves" that the type could be restricted further.
 
 The first definition, however, expects that the return type of the callback will be `value is S` 

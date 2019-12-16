@@ -19,6 +19,11 @@ describe('Functions', () => {
       expect(isPresent<TestData>(null)).toBeFalsy();
     });
 
+    it('should return false on void with undefined', () => {
+      const voidVal: void = undefined;
+      expect(isPresent<TestData>(voidVal)).toBeFalsy();
+    });
+
     it('should filter out only present values from an array', () => {
       const results: Array<TestData | undefined | null> = [
         { data: 'hello' },

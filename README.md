@@ -27,7 +27,7 @@ but we will try and explain it again simply here.
 
 Firstly, TypeScript can not look at the following 
 lambda function `x => x !== undefined` and derive the type `(t: T | undefined): t is T`. 
-Instead, the best it manage is to derive the type: `(t: any): boolean`.
+Instead, the best it can do is to derive the type: `(t: any): boolean`.
 
 Secondly, TypeScript has two type definitions for the `filter` function. They are:
 

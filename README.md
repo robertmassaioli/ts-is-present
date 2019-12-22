@@ -20,6 +20,40 @@ expect the `filter` function to work:
 
 Use this library to dramatically simplify your TypeScript code and get the full power of your types.
 
+## `isPresent` is magic
+
+The `isDefined` and `isFilled` functions are only useful if you want `null` or `undefined` results to remain respectively
+after you have performed some filtering operations. Realistically, the `isPresent` method can do all of the legwork of both
+and, at the time that this library is written, we expect it to be the most used of the functions provided. That is because
+it makes the following code possible:
+
+``` typescript
+import { isPresent } from 'ts-is-present';
+
+type TestData = {
+  data: string;
+};
+
+function getVoid(): void {
+  return undefined;
+}
+
+const results: Array<TestData | undefined | null | void> = [
+  { data: 'hello' },
+  undefined,
+  { data: 'world' },
+  getVoid(),
+  null,
+  { data: 'wow' },
+
+];
+
+const definedResults: Array<TestData> = results.filter(isPresent);
+```
+
+As you can see, `isPresent` can drop `undefined`, `null` and `void` values from an array (where `void` values are
+really just `undefined` in disguise). This makes it broadly applicable.
+
 ## Deeper Explanation
 
 An example of the fundamental problem can be [found in the TypeScript bug tracker](https://github.com/microsoft/TypeScript/issues/16069) 

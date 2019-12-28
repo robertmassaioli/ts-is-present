@@ -3,6 +3,24 @@
 The `ts-is-present` package provides common functions to let you filter out the `null` or `undefined`
 values from arrays in your code AND end up with the types that you expect.
 
+## Super short explanation
+
+Install: `npm install --save ts-is-present`
+
+``` typescript
+import { isPresent, isDefined, isFilled } from 'ts-is-present';
+
+arrayWithUndefinedAndNullValues.filter(isPresent)
+arrayWithUndefinedValues.filter(isDefined)
+arrayWithNullValues.filter(isFilled)
+```
+
+In a nutshell:
+
+ - `isPresent`: Removes `undefined` and `null` values via a `filter`.
+ - `isDefined`: Removes `undefined` values via a `filter`.
+ - `isFilled`: Removes `null` values via a `filter`.
+
 ## Short explanation
 
 The following code feels like it should type check, but it does not:

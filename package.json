@@ -11,7 +11,8 @@
   "main": "lib/index",
   "typings": "lib/index",
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "runkit-example.js"
   ],
   "author": {
     "name": "Robert Massaioli",
@@ -38,5 +39,6 @@
     "jest": "^24.9.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
-  }
+  },
+  "runkitExampleFilename": "runkit-example.js"
 }

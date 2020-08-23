@@ -1,6 +1,6 @@
 {
   "name": "ts-is-present",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "A library to have a generic typescript definition for object presence.",
   "keywords": [
     "typescript",
@@ -20,13 +20,13 @@
   },
   "license": "MIT",
   "private": false,
-  "homepage": "https://bitbucket.org/echo_rm/ts-is-present",
+  "homepage": "https://github.com/robertmassaioli/ts-is-present",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:echo_rm/ts-is-present.git"
+    "url": "git@github.com:robertmassaioli/ts-is-present.git"
   },
   "bugs": {
-    "url": "https://bitbucket.org/echo_rm/ts-is-present/issues?status=new&status=open"
+    "url": "https://github.com/robertmassaioli/ts-is-present/issues"
   },
   "scripts": {
     "build": "tsc --project .",

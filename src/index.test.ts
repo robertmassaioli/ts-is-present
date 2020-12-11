@@ -140,9 +140,24 @@ describe("Functions", () => {
         { data: "" },
         { data: "hello" },
       ];
-      const result: Array<{ data: string }> = items.filter(
-        hasPresentKey("data")
-      );
+      const result = items.filter(hasPresentKey("data"));
+      expect(result).toEqual([{ data: "" }, { data: "hello" }]);
+    });
+
+    it("can be used on non-null properties", () => {
+      const items: Array<{ data?: string | undefined }> = [
+        {},
+        { data: undefined },
+        { data: "" },
+        { data: "hello" },
+      ];
+      const result = items.filter(hasPresentKey("data"));
+      expect(result).toEqual([{ data: "" }, { data: "hello" }]);
+    });
+
+    it("can be used on non-null, non-undefined properties", () => {
+      const items: Array<{ data: string }> = [{ data: "" }, { data: "hello" }];
+      const result = items.filter(hasPresentKey("data"));
       expect(result).toEqual([{ data: "" }, { data: "hello" }]);
     });
   });

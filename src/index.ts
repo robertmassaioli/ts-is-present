@@ -12,7 +12,7 @@ export function isFilled<T>(t: T | null): t is T {
 
 /**
  * Returns a function that can be used to filter down objects
- * to the ones that have a defined non-null value under a key `k`.
+ * to the ones that have a defined non-null value under the key `k`.
  *
  * @example
  * ```ts
@@ -40,12 +40,17 @@ export function hasPresentKey<K extends string | number | symbol>(k: K) {
  *
  * @example
  * ```ts
- * const imageFiles = files.filter(file => file.type === "image");
- * files[0].type // In this case, TS might still treat this as string/undefined/null
+ * type File = { type: "image", imageUrl: string } | { type: "pdf", pdfUrl: string };
+ * const files: File[] = [];
  *
- * const filesWithUrl = files.filter(hasValueKey("type", "image" as "image"));
- * files[0].type // TS will know that this is "image"
- * Note the cast is necessary otherwise TS will only know that type is a string
+ * const imageFiles = files.filter(file => file.type === "image");
+ * files[0].type // In this case, TS will still treat it  as `"image" | "pdf"`
+ *
+ * const filesWithUrl = files.filter(hasValueKey("type", "image" as const));
+ * files[0].type // TS will now know that this is "image"
+ * files[0].imageUrl // TS will know this is present, because already it excluded the other union members.
+ *
+ * Note: the cast `as const` is necessary, otherwise TS will only know that type is a string.
  * ```
  *
  * See https://github.com/microsoft/TypeScript/issues/16069

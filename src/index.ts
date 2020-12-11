@@ -12,16 +12,6 @@ export function isFilled<T>(t: T | null): t is T {
 
 /**
  * Returns a function that can be used to filter down objects
- * to the ones that have a key `k`.
- */
-export function hasKey<K extends string | number | symbol>(k: K) {
-  return function <T, V>(a: T & { [k in K]?: V }): a is T & { [k in K]: V } {
-    return k in a;
-  };
-}
-
-/**
- * Returns a function that can be used to filter down objects
  * to the ones that have a defined non-null value under a key `k`.
  *
  * @example
@@ -41,28 +31,6 @@ export function hasPresentKey<K extends string | number | symbol>(k: K) {
     a: T & { [k in K]?: V | null }
   ): a is T & { [k in K]: V } {
     return a[k] !== undefined && a[k] !== null;
-  };
-}
-
-/**
- * Returns a function that can be used to filter down objects
- * to the ones that have a defined value under a key `k`.
- *
- * @example
- * ```ts
- * const filesWithUrl = files.filter(file => file.url);
- * files[0].url // In this case, TS might still treat this as undefined/null
- *
- * const filesWithUrl = files.filter(hasDefinedKey("url"));
- * files[0].url // TS will know that this is defined
- * ```
- *
- * See https://github.com/microsoft/TypeScript/issues/16069
- * why is that useful.
- */
-export function hasDefinedKey<K extends string | number | symbol>(k: K) {
-  return function <T, V>(a: T & { [k in K]?: V }): a is T & { [k in K]: V } {
-    return a[k] !== undefined;
   };
 }
 

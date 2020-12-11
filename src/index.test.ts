@@ -4,8 +4,6 @@ import {
   isDefined,
   isFilled,
   hasPresentKey,
-  hasDefinedKey,
-  hasKey,
   hasValueAtKey,
 } from ".";
 
@@ -128,32 +126,6 @@ describe("Functions", () => {
     });
   });
 
-  describe("hasKey", () => {
-    it("returns true only for objects that have the given key", () => {
-      expect(hasKey("data")({ data: undefined })).toEqual(true);
-      expect(hasKey("data")({ data: null })).toEqual(true);
-      expect(hasKey("data")({ data: "" })).toEqual(true);
-      expect(hasKey("data")({ data: "hello" })).toEqual(true);
-
-      const items: Array<{ data?: string | null }> = [
-        {},
-        { data: undefined },
-        { data: null },
-        { data: "" },
-        { data: "hello" },
-      ];
-      const result: Array<{
-        data: string | null | undefined;
-      }> = items.filter(hasKey("data"));
-      expect(result).toEqual([
-        { data: undefined },
-        { data: null },
-        { data: "" },
-        { data: "hello" },
-      ]);
-    });
-  });
-
   describe("hasPresentKey", () => {
     it("returns true only for objects that have a defined non-null value at the given key", () => {
       expect(hasPresentKey("data")({ data: undefined })).toEqual(false);
@@ -172,27 +144,6 @@ describe("Functions", () => {
         hasPresentKey("data")
       );
       expect(result).toEqual([{ data: "" }, { data: "hello" }]);
-    });
-  });
-
-  describe("hasDefinedKey", () => {
-    it("returns true only for objects that have a defined value at the given key", () => {
-      expect(hasDefinedKey("data")({ data: undefined })).toEqual(false);
-      expect(hasDefinedKey("data")({ data: null })).toEqual(true);
-      expect(hasDefinedKey("data")({ data: "" })).toEqual(true);
-      expect(hasDefinedKey("data")({ data: "hello" })).toEqual(true);
-
-      const items: Array<{ data?: string | null }> = [
-        {},
-        { data: undefined },
-        { data: null },
-        { data: "" },
-        { data: "hello" },
-      ];
-      const result: Array<{ data: string | null }> = items.filter(
-        hasDefinedKey("data")
-      );
-      expect(result).toEqual([{ data: null }, { data: "" }, { data: "hello" }]);
     });
   });
 

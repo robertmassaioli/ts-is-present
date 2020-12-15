@@ -60,6 +60,7 @@ export function hasValueAtKey<K extends string | number | symbol, V>(
   k: K,
   v: V
 ) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return function <T>(a: T & { [k in K]: any }): a is T & { [k in K]: V } {
     return a[k] === v;
   };

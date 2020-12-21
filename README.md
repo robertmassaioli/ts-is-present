@@ -21,7 +21,7 @@ In a nutshell:
  - `isDefined`: Removes `undefined` values via a `filter`.
  - `isFilled`: Removes `null` values via a `filter`.
  - `hasPresentKey`: Removes everything that is not an object with the expected key present via a `filter`.
- - `hasValueAtKey`: The same as `hasPresentKey` but with an additional check for a particular value.
+ - `hasValueAtKey`: The same as `hasPresentKey` but with an additional check for a particular value. 
 
 ## Short explanation
 

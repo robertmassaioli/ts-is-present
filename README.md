@@ -140,3 +140,7 @@ results.filter(isDefined)
 
 That is why this library helps you derive the types you expect.
 
+## Contributors
+
+ - [Jack Tomaszewski](https://github.com/jtomaszewski)
+ - [Robert Massaioli](https://github.com/robertmassaioli) (Maintainer) 

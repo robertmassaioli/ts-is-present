@@ -20,6 +20,8 @@ In a nutshell:
  - `isPresent`: Removes `undefined` and `null` values via a `filter`.
  - `isDefined`: Removes `undefined` values via a `filter`.
  - `isFilled`: Removes `null` values via a `filter`.
+ - `hasPresentKey`: Removes everything that is not an object with the expected key present via a `filter`.
+ - `hasValueAtKey`: The same as `hasPresentKey` but with an additional check for a particular value.
 
 ## Short explanation
 
@@ -70,6 +72,27 @@ const definedResults: Array<TestData> = results.filter(isPresent);
 
 As you can see, `isPresent` can drop `undefined`, `null` and `void` values from an array (where `void` values are
 really just `undefined` in disguise). This makes it broadly applicable.
+
+## Use `hasPresentKey` and `hasValueAtKey` to filter objects
+
+If you want to find all of the objects in an array that have a particular field present, you can use `hasPresentKey`. For example:
+
+``` typescript
+const filesWithUrl = files.filter(hasPresentKey("url"));
+ files[0].url // TS will know that this is present
+```
+
+If you want to find all of the objects with a particular field set to a particular value you can use `hasValueAtKey`:
+
+``` typescript
+type File = { type: "image", imageUrl: string } | { type: "pdf", pdfUrl: string };
+const files: File[] = <some data here>;
+
+const filesWithUrl = files.filter(hasValueKey("type", "image" as const));
+files[0].type // TS will now know that this is "image"
+```
+
+These functions are useful in filtering out objects from arrays.
 
 ## Deeper Explanation
 

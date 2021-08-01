@@ -3,6 +3,9 @@
 The `ts-is-present` package provides common functions to let you filter out the `null` or `undefined`
 values from arrays in your code AND end up with the types that you expect.
 
+[![CI](https://github.com/robertmassaioli/ts-is-present/actions/workflows/node.js.yml/badge.svg)](https://github.com/robertmassaioli/ts-is-present/actions/workflows/node.js.yml)
+[![Codecov](https://codecov.io/gh/robertmassaioli/ts-is-present/branch/master/graph/badge.svg)](https://codecov.io/gh/robertmassaioli/ts-is-present)
+
 ## Super short explanation
 
 Install: `npm install --save ts-is-present`

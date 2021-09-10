@@ -1,6 +1,6 @@
 {
   "name": "ts-is-present",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A library to have a generic typescript definition for object presence.",
   "keywords": [
     "typescript",

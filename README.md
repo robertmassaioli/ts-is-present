@@ -43,7 +43,7 @@ Use this library to dramatically simplify your TypeScript code and get the full 
 ## Use `isPresent` to drop all `Nothing` values
 
 The `isDefined` and `isFilled` functions are only useful if you want `null` or `undefined` results to remain respectively
-after you have performed some filtering operations. However, `isPresent` any values that represent nothing
+after you have performed some filtering operations. However, `isPresent` filters any values that represent nothing
 from your results (`null`, `undefined` or `void`), like so:
 
 ``` typescript

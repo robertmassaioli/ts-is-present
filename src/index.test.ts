@@ -5,6 +5,7 @@ import {
   isFilled,
   hasPresentKey,
   hasValueAtKey,
+  hasPresentKeys,
 } from '.';
 
 type TestData = {
@@ -51,9 +52,7 @@ describe('Functions', () => {
 
   describe('isDefined', () => {
     it('should return true on defined', () => {
-      expect(
-        isDefined<TestData>({ data: 'hello world' })
-      ).toBeTruthy();
+      expect(isDefined<TestData>({ data: 'hello world' })).toBeTruthy();
     });
 
     it('should return false on undefined', () => {
@@ -97,9 +96,7 @@ describe('Functions', () => {
 
   describe('isFilled', () => {
     it('should return true on defined', () => {
-      expect(
-        isFilled<TestData>({ data: 'hello world' })
-      ).toBeTruthy();
+      expect(isFilled<TestData>({ data: 'hello world' })).toBeTruthy();
     });
 
     it('should return false on null', () => {
@@ -160,6 +157,45 @@ describe('Functions', () => {
     });
   });
 
+  describe('hasPresentKeys', () => {
+    it('returns true only for objects that have a defined non-null single value at the given key', () => {
+      expect(hasPresentKeys(['data'])({ data: undefined })).toEqual(false);
+      expect(hasPresentKeys(['data'])({ data: null })).toEqual(false);
+      expect(hasPresentKeys(['data'])({ data: '' })).toEqual(true);
+      expect(hasPresentKeys(['data'])({ data: 'hello' })).toEqual(true);
+
+      const items: Array<{ data?: string | null | undefined }> = [
+        {},
+        { data: undefined },
+        { data: null },
+        { data: '' },
+        { data: 'hello' },
+      ];
+      const result = items.filter(hasPresentKeys(['data']));
+      expect(result).toEqual([{ data: '' }, { data: 'hello' }]);
+    });
+
+
+    it('returns true only for objects that have a defined non-null multiple value at the given key', () => {
+      expect(hasPresentKeys(['data', 'fruit'])({ data: undefined, fruit: undefined })).toEqual(false);
+      expect(hasPresentKeys(['data', 'fruit'])({ data: null, fruit: null })).toEqual(false);
+      expect(hasPresentKeys(['data', 'fruit'])({ data: '', fruit: '' })).toEqual(true);
+      expect(hasPresentKeys(['data', 'fruit'])({ data: 'hello', fruit: 'banana' })).toEqual(true);
+
+      const items: Array<{ data?: string | null | undefined, fruit?: string | null | undefined }> = [
+        {},
+        { data: undefined, fruit: undefined },
+        { data: null, fruit: null },
+        { data: '', fruit: '' },
+        { data: 'hello', fruit: 'banana' },
+        { data: null, fruit: 'banana' },
+        { data: 'hello', fruit: null },
+      ];
+      const result = items.filter(hasPresentKeys(['data', 'fruit']));
+      expect(result).toEqual([{ data: '', fruit: '' }, { data: 'hello', fruit: 'banana' }]);
+    });
+  });
+
   describe('hasValueAtKey', () => {
     it('returns true only for objects that have a defined value at the given key', () => {
       expect(hasValueAtKey('data', 'a')({ data: undefined })).toEqual(false);
@@ -180,17 +216,17 @@ describe('Functions', () => {
 
       const fruits: Array<
         | {
-            type: 'apple';
-            isApple: true;
-          }
+          type: 'apple';
+          isApple: true;
+        }
         | {
-            type: 'banana';
-            isBanana: true;
-          }
+          type: 'banana';
+          isBanana: true;
+        }
       > = [
-        { type: 'apple', isApple: true },
-        { type: 'banana', isBanana: true },
-      ];
+          { type: 'apple', isApple: true },
+          { type: 'banana', isBanana: true },
+        ];
       const fruitsResult: Array<{
         type: 'apple';
         isApple: true;

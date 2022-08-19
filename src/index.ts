@@ -36,6 +36,35 @@ export function hasPresentKey<K extends string | number | symbol>(k: K) {
 
 /**
  * Returns a function that can be used to filter down objects
+ * to the ones that have a defined non-null value under the keys `k`.
+ *
+ * @example
+ * ```ts
+ * const filesWithUrlAndName = files.filter(file => file.url && file.name);
+ * files[0].url || files[0].name // In this case, TS might still treat this as undefined/null
+ *
+ * const filesWithUrlAndName = files.filter(hasPresentKeys(["url", "name"]));
+ * files[0].url || files[0].name // TS will know that this is present
+ * ```
+ *
+ * See https://github.com/microsoft/TypeScript/issues/16069
+ * why is that useful.
+ */
+export function hasPresentKeys<K extends string | number | symbol>(k: K[]) {
+  return function <T, V>(
+    a: T & { [k in K]?: V | null }
+  ): a is T & { [k in K]: V } {
+    for (let i = 0; i < k.length; i++) {
+      if (a[k[i]] === undefined || a[k[i]] === null) {
+        return false;
+      }
+    }
+    return true;
+  };
+}
+
+/**
+ * Returns a function that can be used to filter down objects
  * to the ones that have a specific value V under a key `k`.
  *
  * @example
